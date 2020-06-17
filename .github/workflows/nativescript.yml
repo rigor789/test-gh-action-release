@@ -27,6 +27,7 @@ jobs:
         run: npm install
       
       - name: Build Android Application
+        if: "false"
         run: tns build android --copy-to dist/build.apk
       
       - name: Build iOS Application
@@ -48,6 +49,7 @@ jobs:
           LC_ALL: en_GB.UTF-8
           
       - name: Upload Android Build
+        if: "false"
         uses: actions/upload-artifact@v1
         with:
           name: Andorid Build
