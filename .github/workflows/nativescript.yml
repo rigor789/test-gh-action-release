@@ -43,6 +43,7 @@ jobs:
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
           FASTLANE_PASSWORD: "${{ secrets.FASTLANE_PASSWORD }}"
           FASTLANE_SESSION: "${{ secrets.FASTLANE_SESSION }}"
+          MATCH_PROVISIONING_PROFILE: "${{ secrets.MATCH_PROVISIONING_PROFILE }}"
           LANG: en_GB.UTF-8
           LC_ALL: en_GB.UTF-8
           
