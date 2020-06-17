@@ -14,7 +14,9 @@ platform :ios do
     build_app(
         scheme: "testghactionrelease",
         workspace: "./platforms/ios/testghactionrelease.xcworkspace",
-        export_method: 'app-store'
+        export_method: 'app-store',
+        output_directory: 'dist',
+        output_name: 'build.ipa'
     )
   end
 end
