@@ -26,7 +26,7 @@ platform :ios do
     )
       
     update_project_provisioning(
-        xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace"
+        xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace",
         profile: ENV['MATCH_PROVISIONING_PROFILE']
     )
 
