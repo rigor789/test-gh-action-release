@@ -16,7 +16,7 @@ jobs:
 
       - name: Install NativeScript
         run: |
-          sudo gem install fastlane
+          sudo gem install fastlane -NV
           python -m pip install --upgrade pip six
           npm i -g nativescript --ignore-scripts
           tns usage-reporting disable
