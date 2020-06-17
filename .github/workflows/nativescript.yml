@@ -33,7 +33,15 @@ jobs:
         run: |
           # tns build ios --copy-to dist/build.ipa
           fastlane ios build
-      
+        env:
+          FASTLANE_APPLE_ID: "${{ secrets.FASTLANE_APPLE_ID }}"
+          FASTLANE_APPLE_TEAM_ID: "${{ secrets.FASTLANE_APPLE_TEAM_ID }}"
+          FASTLANE_IOS_APP_ID: "${{ secrets.FASTLANE_IOS_APP_ID }}"
+          FASTLANE_MATCH_APP_ID: "${{ secrets.FASTLANE_MATCH_APP_ID }}"
+          FASTLANE_MATCH_GIT_URL: "${{ secrets.FASTLANE_MATCH_GIT_URL }}"
+          FASTLANE_MATCH_USERNAME: "${{ secrets.FASTLANE_MATCH_USERNAME }}"
+          MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
+          
       - name: Upload Android Build
         uses: actions/upload-artifact@v1
         with:
