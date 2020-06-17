@@ -7,3 +7,6 @@ node_modules
 # NativeScript application
 hooks
 platforms
+testghactionrelease.ipa
+testghactionrelease.app.dSYM.zip
+fastlane/.env.default

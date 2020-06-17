@@ -1,0 +1,20 @@
+desc 'test lane'
+lane :test do
+    sh('echo', 'Test... OK!')
+end
+
+platform :ios do
+  lane :build do
+    # Prepare nativescript app
+    sh('tns', 'prepare', 'ios', '--clean', '--release', '--env.production')
+
+    # load appstore certificates via match
+    match(type: 'appstore')
+
+    build_app(
+        scheme: "testghactionrelease",
+        workspace: "./platforms/ios/testghactionrelease.xcworkspace",
+        export_method: 'app-store'
+    )
+  end
+end
