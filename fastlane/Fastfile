@@ -24,6 +24,11 @@ platform :ios do
         keychain_password: 'meow',
         readonly: true
     )
+      
+    update_project_provisioning(
+        xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace"
+        profile: ENV['MATCH_PROVISIONING_PROFILE']
+    )
 
     build_app(
         scheme: "testghactionrelease",
