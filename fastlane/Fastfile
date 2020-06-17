@@ -5,11 +5,25 @@ end
 
 platform :ios do
   lane :build do
+    create_keychain(
+        name: "match_build_keychain",
+        password: "meow",
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: false
+    )
+      
     # Prepare nativescript app
     sh('tns', 'prepare', 'ios', '--clean', '--release', '--env.production')
 
     # load appstore certificates via match
-    match(type: 'appstore')
+    match(
+        type: 'appstore',
+        keychain_name: 'match_build_keychain',
+        keychain_password: 'meow',
+        readonly: true
+    )
 
     build_app(
         scheme: "testghactionrelease",
