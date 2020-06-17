@@ -1,0 +1,47 @@
+name: Build NativeScript Application
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: Install Python
+        uses: actions/setup-python@v1
+
+      - name: Install NativeScript
+        run: |
+          sudo gem install fastlane
+          python -m pip install --upgrade pip six
+          npm i -g nativescript --ignore-scripts
+          tns usage-reporting disable
+          tns error-reporting disable
+          tns doctor
+          
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Build Android Application
+        run: tns build android --copy-to dist/build.apk
+      
+      - name: Build iOS Application
+        run: |
+          # tns build ios --copy-to dist/build.ipa
+          fastlane ios build
+      
+      - name: Upload Android Build
+        uses: actions/upload-artifact@v1
+        with:
+          name: Andorid Build
+          path: ./dist/build.apk
+                
+      - name: Upload iOS Build
+        uses: actions/upload-artifact@v1
+        with:
+          name: iOS Build
+          path: ./dist/build.ipa
