@@ -41,6 +41,7 @@ jobs:
           FASTLANE_MATCH_GIT_URL: "${{ secrets.FASTLANE_MATCH_GIT_URL }}"
           FASTLANE_MATCH_USERNAME: "${{ secrets.FASTLANE_MATCH_USERNAME }}"
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
+          FASTLANE_PASSWORD: "${{ secrets.FASTLANE_PASSWORD }}"
           
       - name: Upload Android Build
         uses: actions/upload-artifact@v1
