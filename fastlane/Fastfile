@@ -25,10 +25,10 @@ platform :ios do
         readonly: true
     )
       
-    update_project_provisioning(
-        xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace",
-        profile: ENV['MATCH_PROVISIONING_PROFILE']
-    )
+    # update_project_provisioning(
+    #     xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace",
+    #     profile: ENV['MATCH_PROVISIONING_PROFILE']
+    # )
 
     build_app(
         scheme: "testghactionrelease",
