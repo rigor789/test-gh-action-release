@@ -20,20 +20,25 @@ or alternatively using `brew cask install fastlane`
 fastlane test
 ```
 test lane
-### doctor
-```
-fastlane doctor
-```
-
 
 ----
 
 ## iOS
+### ios certificates
+```
+fastlane ios certificates
+```
+Fetch certificates and provisioning profiles
 ### ios build
 ```
 fastlane ios build
 ```
-Submit a new Beta Build to the App Store
+
+### ios beta
+```
+fastlane ios beta
+```
+Ship to Testflight.
 
 ----
 

@@ -4,38 +4,80 @@ lane :test do
 end
 
 platform :ios do
+  desc 'Fetch certificates and provisioning profiles'
+  lane :certificates do
+    match(type: 'development')
+    match(type: "appstore")
+  end
+
   lane :build do
-    create_keychain(
-        name: "match_build_keychain",
-        password: "meow",
-        default_keychain: true,
-        unlock: true,
-        timeout: 3600,
-        lock_when_sleeps: false
+    match(type: "appstore")
+    ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sign_io.nstudio.test.gh.action_appstore_profile-name']
+
+    #create_keychain(
+    #    name: "match_build_keychain",
+    #    password: "meow",
+    #    default_keychain: true,
+    #    unlock: true,
+    #    timeout: 3600,
+    #    lock_when_sleeps: false
+    #)
+
+    # build nativescript app
+    sh(
+        'tns', 'build', 'ios',
+        '--for-device',
+        '--copy-to', './dist/build.ipa',
+        '--release',
+        '--env.production',
+        # '--env.uglify'
     )
-      
-    # Prepare nativescript app
-    sh('tns', 'prepare', 'ios', '--clean', '--release', '--env.production')
 
     # load appstore certificates via match
-    match(
-        type: 'appstore',
-        keychain_name: 'match_build_keychain',
-        keychain_password: 'meow',
-        readonly: true
-    )
-      
+    #match(
+    #    type: 'appstore',
+    #    keychain_name: 'match_build_keychain',
+    #    keychain_password: 'meow',
+    #    readonly: true
+    #)
+
     # update_project_provisioning(
     #     xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace",
     #     profile: ENV['MATCH_PROVISIONING_PROFILE']
     # )
 
-    build_app(
-        scheme: "testghactionrelease",
-        workspace: "./platforms/ios/testghactionrelease.xcworkspace",
-        export_method: 'app-store',
-        output_directory: 'dist',
-        output_name: 'build.ipa'
+    #build_app(
+    #    scheme: "testghactionrelease",
+    #    workspace: "./platforms/ios/testghactionrelease.xcworkspace",
+    #    export_method: 'app-store',
+    #    output_directory: 'dist',
+    #    output_name: 'build.ipa'
+    #)
+  end
+
+  desc 'Ship to Testflight.'
+  lane :beta do
+    build
+
+    changelog_from_git_commits
+
+    upload_to_testflight(
+      beta_app_description: "support@nativescript.org",
+      beta_app_feedback_email: "support@nativescript.org",
+      demo_account_required: false,
+      distribute_external: true,
+      groups: ["beta testers"],
+      ipa: './dist/build.ipa',
+      notify_external_testers: true,
+      beta_app_review_info: {
+        contact_email: "support@nativescript.org",
+        contact_first_name: "Native",
+        contact_last_name: "Script",
+        contact_phone: "(866) 344-9898",
+        demo_account_name: "",
+        demo_account_password: "",
+        notes: "<3 Thank you for reviewing!"
+      },
     )
   end
 end
