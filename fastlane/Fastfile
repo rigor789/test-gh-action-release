@@ -11,14 +11,14 @@ platform :ios do
   end
 
   lane :build do
-    create_keychain(
-        name: "match_build_keychain",
-        password: 'keychain',
-        default_keychain: true,
-        unlock: true,
-        timeout: 3600,
-        lock_when_sleeps: false
-    )
+    # create_keychain(
+    #     name: "match_build_keychain",
+    #     password: 'keychain',
+    #     default_keychain: true,
+    #     unlock: true,
+    #     timeout: 3600,
+    #     lock_when_sleeps: false
+    # )
 
     match(type: "appstore")
         ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sign_io.nstudio.test.gh.action_appstore_profile-name']
@@ -30,6 +30,7 @@ platform :ios do
         '--copy-to', './dist/build.ipa',
         '--release',
         '--env.production',
+        '--profile', ENV['MATCH_PROVISIONING_PROFILE'],
         # '--env.uglify'
     )
 
