@@ -11,3 +11,5 @@ testghactionrelease.ipa
 testghactionrelease.app.dSYM.zip
 fastlane/.env.default
 fastlane/report.xml
+
+dist

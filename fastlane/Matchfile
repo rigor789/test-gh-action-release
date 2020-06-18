@@ -1,13 +1,13 @@
-git_url(ENV['FASTLANE_MATCH_GIT_URL'])
+git_url(ENV['MATCH_GIT_URL'])
 
 storage_mode("git")
 
 type("development") # The default type, can be: appstore, adhoc, enterprise or development
 
-app_identifier(ENV['FASTLANE_MATCH_APP_ID'])
+app_identifier(ENV['MATCH_APP_ID'])
 
 # Your Apple Developer Portal username
-username(ENV['FASTLANE_MATCH_USERNAME'])
+# username(ENV['FASTLANE_MATCH_USERNAME'])
 
 # For all available options run `fastlane match --help`
 # Remove the # in the beginning of the line to enable the other options
