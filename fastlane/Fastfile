@@ -13,7 +13,7 @@ platform :ios do
   lane :build do
     match(type: "appstore")
     ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sign_io.nstudio.test.gh.action_appstore_profile-name']
-    
+
     #create_keychain(
     #    name: "match_build_keychain",
     #    password: "meow",
@@ -22,9 +22,16 @@ platform :ios do
     #    timeout: 3600,
     #    lock_when_sleeps: false
     #)
-      
-    # Prepare nativescript app
-    sh('tns', 'build', 'ios', '--for-device', '--env.uglify', '--copy-to ./test-gh.ipa', '--release', '--env.production')
+
+    # build nativescript app
+    sh(
+        'tns', 'build', 'ios',
+        '--for-device',
+        '--copy-to', './dist/build.ipa',
+        '--release',
+        '--env.production',
+        # '--env.uglify'
+    )
 
     # load appstore certificates via match
     #match(
@@ -33,7 +40,7 @@ platform :ios do
     #    keychain_password: 'meow',
     #    readonly: true
     #)
-      
+
     # update_project_provisioning(
     #     xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace",
     #     profile: ENV['MATCH_PROVISIONING_PROFILE']
@@ -60,7 +67,7 @@ platform :ios do
       demo_account_required: false,
       distribute_external: true,
       groups: ["beta testers"],
-      ipa: 'test-gh.ipa',
+      ipa: './dist/build.ipa',
       notify_external_testers: true,
       beta_app_review_info: {
         contact_email: "support@nativescript.org",
