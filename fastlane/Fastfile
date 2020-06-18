@@ -13,7 +13,7 @@ platform :ios do
   lane :build do
     create_keychain(
         name: "match_build_keychain",
-        password: false,
+        password: 'keychain',
         default_keychain: true,
         unlock: true,
         timeout: 3600,
