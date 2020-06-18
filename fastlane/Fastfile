@@ -11,17 +11,8 @@ platform :ios do
   end
 
   lane :build do
-    # create_keychain(
-    #     name: "match_build_keychain",
-    #     password: 'keychain',
-    #     default_keychain: true,
-    #     unlock: true,
-    #     timeout: 3600,
-    #     lock_when_sleeps: false
-    # )
-
-    match(type: "appstore")
-        ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sign_io.nstudio.test.gh.action_appstore_profile-name']
+    match(type: "appstore", readonly: true)
+    ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sigh_io.nstudio.test.gh.action_appstore_profile-name']
 
     # build nativescript app
     sh(
@@ -33,27 +24,6 @@ platform :ios do
         '--provision', ENV['MATCH_PROVISIONING_PROFILE'],
         # '--env.uglify'
     )
-
-    # load appstore certificates via match
-    #match(
-    #    type: 'appstore',
-    #    keychain_name: 'match_build_keychain',
-    #    keychain_password: 'meow',
-    #    readonly: true
-    #)
-
-    # update_project_provisioning(
-    #     xcodeproj: "./platforms/ios/testghactionrelease.xcworkspace",
-    #     profile: ENV['MATCH_PROVISIONING_PROFILE']
-    # )
-
-    #build_app(
-    #    scheme: "testghactionrelease",
-    #    workspace: "./platforms/ios/testghactionrelease.xcworkspace",
-    #    export_method: 'app-store',
-    #    output_directory: 'dist',
-    #    output_name: 'build.ipa'
-    #)
   end
 
   desc 'Ship to Testflight.'
