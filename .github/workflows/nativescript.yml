@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-        
+
       - name: Install Python
         uses: actions/setup-python@v1
 
@@ -22,14 +22,14 @@ jobs:
           tns usage-reporting disable
           tns error-reporting disable
           tns doctor
-          
+
       - name: Install Dependencies
         run: npm install
-      
+
       - name: Build Android Application
         if: "false"
         run: tns build android --copy-to dist/build.apk
-      
+
       - name: Build iOS Application
         run: |
           # tns build ios --copy-to dist/build.ipa
@@ -44,17 +44,16 @@ jobs:
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
           FASTLANE_PASSWORD: "${{ secrets.FASTLANE_PASSWORD }}"
           FASTLANE_SESSION: "${{ secrets.FASTLANE_SESSION }}"
-          MATCH_PROVISIONING_PROFILE: "${{ secrets.MATCH_PROVISIONING_PROFILE }}"
           LANG: en_GB.UTF-8
           LC_ALL: en_GB.UTF-8
-          
+
       - name: Upload Android Build
         if: "false"
         uses: actions/upload-artifact@v1
         with:
           name: Andorid Build
           path: ./dist/build.apk
-                
+
       - name: Upload iOS Build
         uses: actions/upload-artifact@v1
         with:
