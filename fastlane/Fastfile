@@ -9,7 +9,7 @@ platform :ios do
     register_devices(
       devices_file: './devices.txt'
     )
-    match(type: 'development')
+    match(type: 'development', force_for_new_devices: true)
     match(type: "appstore")
   end
 
@@ -36,8 +36,6 @@ platform :ios do
   desc 'Ship to Testflight.'
   lane :beta do
     build
-
-    changelog_from_git_commits
 
     upload_to_testflight(
       beta_app_description: "support@nativescript.org",

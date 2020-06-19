@@ -33,7 +33,7 @@ jobs:
       - name: Build iOS Application
         run: |
           # tns build ios --copy-to dist/build.ipa
-          fastlane ios build
+          fastlane ios beta
         env:
           MATCH_GIT_URL: "${{ secrets.MATCH_GIT_URL }}"
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
