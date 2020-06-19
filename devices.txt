@@ -1,2 +1,3 @@
 Device ID	Device Name
 9e0fb4ebe426073e62f9c999608ff0862a4db2c4	Igor's iPhone 6
+00008030-000408D42692802E	Nathan's iPhone
