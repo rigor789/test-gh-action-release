@@ -56,5 +56,5 @@ jobs:
       - name: Upload iOS Build
         uses: actions/upload-artifact@v1
         with:
-          name: iOS Build
+          name: ios-build.ipa
           path: ./dist/build.ipa
