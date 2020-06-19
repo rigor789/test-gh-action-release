@@ -35,13 +35,13 @@ jobs:
           # tns build ios --copy-to dist/build.ipa
           fastlane ios build
         env:
-          MATCH_GIT_URL: "${{ secrets.FASTLANE_MATCH_GIT_URL }}"
+          MATCH_GIT_URL: "${{ secrets.MATCH_GIT_URL }}"
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
           MATCH_APP_ID: "io.nstudio.test.gh.action"
-          FASTLANE_APPLE_ID: "${{ secrets.FASTLANE_APPLE_ID }}"
-          FASTLANE_APPLE_TEAM_ID: "${{ secrets.FASTLANE_APPLE_TEAM_ID }}"
-          FASTLANE_MATCH_USERNAME: "${{ secrets.FASTLANE_MATCH_USERNAME }}"
-          FASTLANE_PASSWORD: "${{ secrets.FASTLANE_PASSWORD }}"
+          KEYCHAIN_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
+          APPLE_ID: "rigor789@gmail.com"
+          APPLE_TEAM_ID: "3462C7DLZZ"
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: "${{ secrets.APPLE_APP_PASSWORD }}"
           FASTLANE_SESSION: "${{ secrets.FASTLANE_SESSION }}"
           LANG: en_GB.UTF-8
           LC_ALL: en_GB.UTF-8
