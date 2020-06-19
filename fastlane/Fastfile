@@ -21,7 +21,6 @@ platform :ios do
         '--copy-to', './dist/build.ipa',
         '--release',
         '--env.production',
-        '--team-id', ENV['APPLE_TEAM_ID'],
         '--provision', ENV['MATCH_PROVISIONING_PROFILE'],
         '--log', 'trace'
         # '--env.uglify'
