@@ -15,8 +15,8 @@ platform :ios do
 
   lane :build do
     setup_ci()
-    match(type: "appstore", readonly: true)
-    ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sigh_io.nstudio.test.gh.action_appstore_profile-name']
+    match(type: "development", readonly: true)
+    ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sigh_io.nstudio.test.gh.action_development_profile-name']
 
     # build nativescript app
     Dir.chdir('..') do
