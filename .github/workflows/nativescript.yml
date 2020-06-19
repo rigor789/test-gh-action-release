@@ -43,7 +43,6 @@ jobs:
           APPLE_TEAM_ID: "3462C7DLZZ"
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: "${{ secrets.APPLE_APP_PASSWORD }}"
           FASTLANE_SESSION: "${{ secrets.FASTLANE_SESSION }}"
-          FASTLANE_PASSWORD: "${{ secrets.FASTLANE_PASSWORD }}"
           LANG: en_GB.UTF-8
           LC_ALL: en_GB.UTF-8
 
