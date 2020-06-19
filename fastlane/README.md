@@ -29,9 +29,19 @@ test lane
 fastlane ios certificates
 ```
 Fetch certificates and provisioning profiles
+### ios builddev
+```
+fastlane ios builddev
+```
+
 ### ios build
 ```
 fastlane ios build
+```
+
+### ios bump_build_number
+```
+fastlane ios bump_build_number
 ```
 
 ### ios beta

@@ -13,7 +13,7 @@ platform :ios do
     match(type: "appstore")
   end
 
-  lane :build-dev do
+  lane :builddev do
     setup_ci()
     match(type: "development", readonly: true)
     ENV['MATCH_PROVISIONING_PROFILE'] ||= ENV['sigh_io.nstudio.test.gh.action_development_profile-name']
@@ -53,9 +53,21 @@ platform :ios do
       end
     end
 
+  lane :bump_build_number do
+    build_number = latest_testflight_build_number.to_i + 1
+
+    set_info_plist_value(
+        path: 'app/App_Resources/iOS/Info.plist',
+        key: 'CFBundleVersion',
+        value: build_number.to_s
+    )
+  end
+
   desc 'Ship to Testflight.'
   lane :beta do
-    build
+    bump_build_number()
+
+    build()
 
     upload_to_testflight(
       beta_app_description: "support@nativescript.org",
@@ -64,7 +76,7 @@ platform :ios do
       distribute_external: true,
       groups: ["beta testers"],
       ipa: './dist/build.ipa',
-      notify_external_testers: true,
+      notify_external_testers: false,
       beta_app_review_info: {
         contact_email: "support@nativescript.org",
         contact_first_name: "Native",
