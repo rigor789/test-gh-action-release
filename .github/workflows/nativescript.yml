@@ -16,7 +16,7 @@ jobs:
 
       - name: Install NativeScript
         run: |
-          sudo gem install fastlane -NV
+          bundle install
           python -m pip install --upgrade pip six
           npm i -g nativescript --ignore-scripts
           tns usage-reporting disable
@@ -33,7 +33,7 @@ jobs:
       - name: Build iOS Application
         run: |
           # tns build ios --copy-to dist/build.ipa
-          fastlane ios beta
+          bundle exec fastlane ios beta
         env:
           MATCH_GIT_URL: "${{ secrets.MATCH_GIT_URL }}"
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
