@@ -54,7 +54,7 @@ jobs:
           path: ./dist/build.apk
 
       - name: Upload iOS Build
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          name: ios-build.ipa
+          name: iOS Development Build
           path: ./dist/build.ipa
