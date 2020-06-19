@@ -17,7 +17,7 @@ platform :ios do
     # build nativescript app
     sh(
         'tns', 'build', 'ios',
-        '--for-device',
+        # '--for-device',
         '--copy-to', './dist/build.ipa',
         '--release',
         '--env.production',
