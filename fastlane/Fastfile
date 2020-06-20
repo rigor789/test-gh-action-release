@@ -73,7 +73,7 @@ platform :ios do
       beta_app_description: "support@nativescript.org",
       beta_app_feedback_email: "support@nativescript.org",
       demo_account_required: false,
-      distribute_external: true,
+      distribute_external: false,
       groups: ["beta testers"],
       ipa: './dist/build.ipa',
       notify_external_testers: false,
