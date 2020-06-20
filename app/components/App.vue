@@ -1,8 +1,9 @@
 <template>
     <Page>
         <ActionBar title="Welcome to NativeScript-Vue!"/>
-        <GridLayout columns="*" rows="*">
+        <GridLayout columns="*" rows="*, auto">
             <Label class="message" :text="msg" col="0" row="0"/>
+            <Label text="So I heard this thing is working now?" row="1"/>
         </GridLayout>
     </Page>
 </template>
